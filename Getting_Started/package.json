@@ -12,12 +12,16 @@
     "url": "git+https://github.com/schahriar/n-api-article.git"
   },
   "engines": {
-    "node" : ">=8.4.0"
+    "node": ">=8.4.0"
   },
   "author": "Schahriar SaffarShargh <info@schahriar.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/schahriar/n-api-article/issues"
   },
-  "homepage": "https://github.com/schahriar/n-api-article#readme"
+  "homepage": "https://github.com/schahriar/n-api-article#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "save": "^2.3.2"
+  }
 }

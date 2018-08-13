@@ -1,6 +1,7 @@
 #include <node_api.h>
+#include <stdio.h>
 
-napi_value MyFunction(napi_env env, napi_callback_info info) {
+/*napi_value MyFunction(napi_env env, napi_callback_info info) {
   napi_status status;
   size_t argc = 1;
   int number = 0;
@@ -25,18 +26,31 @@ napi_value MyFunction(napi_env env, napi_callback_info info) {
   }
 
   return myNumber;
+}*/
+
+bool lights = false;
+
+napi_value illumination (napi_env env, napi_callback_info info) {
+    if (lights == false) {
+        lights = true;
+    } else {
+        lights = false;
+    }
+    printf("lights are %d\n", lights);
+
+    return 0;
 }
 
 napi_value Init(napi_env env, napi_value exports) {
   napi_status status;
   napi_value fn;
 
-  status = napi_create_function(env, NULL, 0, MyFunction, NULL, &fn);
+  status = napi_create_function(env, NULL, 0, illumination, NULL, &fn);
   if (status != napi_ok) {
     napi_throw_error(env, NULL, "Unable to wrap native function");
   }
 
-  status = napi_set_named_property(env, exports, "my_function", fn);
+  status = napi_set_named_property(env, exports, "illumination", fn);
   if (status != napi_ok) {
     napi_throw_error(env, NULL, "Unable to populate exports");
   }
